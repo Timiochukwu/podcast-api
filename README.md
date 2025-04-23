@@ -57,7 +57,7 @@ The project follows Laravel's standard architecture with additional patterns:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/podcast-api.git
+   git clone https://github.com/Timiochukwu/podcast-api.git
    cd podcast-api
    ```
 
