@@ -1,0 +1,156 @@
+.
+├── Dockerfile
+├── README.md
+├── app
+│   ├── Http
+│   │   ├── Controllers
+│   │   │   ├── Api
+│   │   │   │   ├── ApiController.php
+│   │   │   │   ├── AuthController.php
+│   │   │   │   ├── CategoryController.php
+│   │   │   │   ├── EpisodeController.php
+│   │   │   │   └── PodcastController.php
+│   │   │   └── Controller.php
+│   │   ├── Middleware
+│   │   │   └── ApiRateLimiter.php
+│   │   ├── Requests
+│   │   │   ├── CategoryRequest.php
+│   │   │   ├── EpisodeRequest.php
+│   │   │   ├── PodcastRequest.php
+│   │   │   └── TagRequest.php
+│   │   └── Resources
+│   │       ├── CategoryResource.php
+│   │       ├── EpisodeResource.php
+│   │       ├── PodcastResource.php
+│   │       └── TagResource.php
+│   ├── Models
+│   │   ├── Category.php
+│   │   ├── Episode.php
+│   │   ├── Podcast.php
+│   │   ├── Tag.php
+│   │   └── User.php
+│   ├── Providers
+│   │   ├── AppServiceProvider.php
+│   │   └── RepositoryServiceProvider.php
+│   └── Repositories
+│       ├── BaseRepository.php
+│       ├── CategoryRepository.php
+│       ├── EpisodeRepository.php
+│       ├── Interfaces
+│       │   ├── BaseRepositoryInterface.php
+│       │   ├── CategoryRepositoryInterface.php
+│       │   ├── EpisodeRepositoryInterface.php
+│       │   ├── PodcastRepositoryInterface.php
+│       │   └── RepositoryInterface.php
+│       └── PodcastRepository.php
+├── artisan
+├── bootstrap
+│   ├── app.php
+│   ├── cache
+│   │   ├── packages.php
+│   │   └── services.php
+│   └── providers.php
+├── composer.json
+├── composer.lock
+├── config
+│   ├── app.php
+│   ├── auth.php
+│   ├── cache.php
+│   ├── database.php
+│   ├── filesystems.php
+│   ├── l5-swagger.php
+│   ├── logging.php
+│   ├── mail.php
+│   ├── queue.php
+│   ├── sanctum.php
+│   ├── services.php
+│   └── session.php
+├── database
+│   ├── database.sqlite
+│   ├── factories
+│   │   ├── CategoryFactory.php
+│   │   ├── EpisodeFactory.php
+│   │   ├── PodCastFactory.php
+│   │   ├── TagFactory.php
+│   │   └── UserFactory.php
+│   ├── migrations
+│   │   ├── 0001_01_01_000000_create_users_table.php
+│   │   ├── 0001_01_01_000001_create_cache_table.php
+│   │   ├── 0001_01_01_000002_create_jobs_table.php
+│   │   ├── 2025_04_22_190754_create_personal_access_tokens_table.php
+│   │   ├── 2025_04_22_192119_create_categories_table.php
+│   │   ├── 2025_04_22_192127_create_podcasts_table.php
+│   │   ├── 2025_04_22_192135_create_episodes_table.php
+│   │   ├── 2025_04_22_192157_create_tags_table.php
+│   │   ├── 2025_04_22_192202_create_podcast_tag_table.php
+│   │   ├── 2025_04_22_195728_create_personal_access_tokens_table.php
+│   │   └── 2025_04_23_085711_create_personal_access_tokens_table.php
+│   └── seeders
+│       └── DatabaseSeeder.php
+├── docker
+│   └── nginx
+│       └── app.conf
+├── docker-compose.yml
+├── file_structure.txt
+├── package.json
+├── phpunit.xml
+├── public
+│   ├── favicon.ico
+│   ├── index.php
+│   └── robots.txt
+├── resources
+│   ├── css
+│   │   └── app.css
+│   ├── js
+│   │   ├── app.js
+│   │   └── bootstrap.js
+│   └── views
+│       └── welcome.blade.php
+├── routes
+│   ├── api.php
+│   ├── console.php
+│   └── web.php
+├── storage
+│   ├── api-docs
+│   │   └── api-docs.json
+│   ├── app
+│   │   ├── private
+│   │   └── public
+│   ├── framework
+│   │   ├── cache
+│   │   │   └── data
+│   │   ├── sessions
+│   │   ├── testing
+│   │   └── views
+│   │       ├── 06d0791795edeb8d6b9d8375b036c900.php
+│   │       ├── 12c0aa9b30cb6155197a882d1534482f.php
+│   │       ├── 2d21d841b5d4560d0c9ecdbfa42e424d.php
+│   │       ├── 2deba48b46bfad01d654b03036a78afa.php
+│   │       ├── 3e11830da6c4d41b676c5ac5ba473a06.php
+│   │       ├── 51b39f6ca3f7e4ea0d0b0f8df2057b72.php
+│   │       ├── 6e143e21ca01c940bf0f317675c95894.php
+│   │       ├── 8f152c6111694ce7446a7f6be0e3aa80.php
+│   │       ├── 917edaf26233c227a786a5dbd0e92de1.php
+│   │       ├── 918c28c3bd54c59314b45b6d53573f0f.php
+│   │       ├── 9970f1bfa4a5e32767428395ec1cfbb1.php
+│   │       ├── 9e3386314a6c6573c04dabde41be00b3.php
+│   │       ├── af7a0c7064aecc8efaaef6ec8271b347.php
+│   │       ├── befd7557621ef11c600861a56ebf6cd2.php
+│   │       ├── ce0e7960de22499088fef057ec8884f2.php
+│   │       ├── dca5fdc4b3931ee005e83388c519ab9f.php
+│   │       ├── ef5e1d464fa2f979fa3b988ba191088e.php
+│   │       └── fca4c256dfb37f5dd49e7f71c70adb6e.php
+│   └── logs
+│       └── laravel.log
+├── tests
+│   ├── Feature
+│   │   ├── CategoryTest.php
+│   │   ├── EpisodeTest.php
+│   │   ├── ExampleTest.php
+│   │   └── PodcastTest.php
+│   ├── TestCase.php
+│   └── Unit
+│       └── ExampleTest.php
+└── vite.config.js
+
+42 directories, 112 files

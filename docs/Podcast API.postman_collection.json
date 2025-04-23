@@ -1,0 +1,2004 @@
+{
+	"info": {
+		"_postman_id": "69a41dff-a099-4e12-9b1a-0cca4c615e29",
+		"name": "Podcast API",
+		"description": "A comprehensive RESTful API for a podcast platform built with Laravel 12. This collection includes all endpoints for managing categories, podcasts, episodes, and user authentication.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24113774",
+		"_collection_link": "https://api-team-0413.postman.co/workspace/API-TEAM-Workspace~28b11d06-ddf4-45e9-a461-34ee22efeb6a/collection/24113774-69a41dff-a099-4e12-9b1a-0cca4c615e29?action=share&source=collection_link&creator=24113774"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"device_name\": \"Postman\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						},
+						"description": "Register a new user and receive an authentication token."
+					},
+					"response": [
+						{
+							"name": "Successful Registration",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\",\n    \"device_name\": \"Postman\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User registered successfully\",\n    \"data\": {\n        \"token\": \"1|FiMNSXxjGJdmD1NAEsXvNRGbLIvIxMkHkRsNDJNM\",\n        \"user\": {\n            \"id\": 1,\n            \"name\": \"John Doe\",\n            \"email\": \"john@example.com\",\n            \"created_at\": \"2025-04-22T12:00:00.000000Z\",\n            \"updated_at\": \"2025-04-22T12:00:00.000000Z\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"invalid-email\",\n    \"password\": \"pass\",\n    \"password_confirmation\": \"different-password\",\n    \"device_name\": \"Postman\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Validation errors\",\n    \"errors\": {\n        \"email\": [\"The email must be a valid email address.\"],\n        \"password\": [\"The password must be at least 8 characters.\", \"The password confirmation does not match.\"]\n    },\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"timiochukwu@gmail.com\",\n    \"password\": \"#Timi111\",\n    \"device_name\": \"Postman\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Log in a user and receive an authentication token."
+					},
+					"response": [
+						{
+							"name": "Successful Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"john@example.com\",\n    \"password\": \"password\",\n    \"device_name\": \"Postman\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Login successful\",\n    \"data\": {\n        \"token\": \"2|HdKLSJfj3kLSdfjklSDFDfsdf234SDfsSDFj\",\n        \"user\": {\n            \"id\": 1,\n            \"name\": \"John Doe\",\n            \"email\": \"john@example.com\",\n            \"created_at\": \"2025-04-22T12:00:00.000000Z\",\n            \"updated_at\": \"2025-04-22T12:00:00.000000Z\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Invalid Credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"john@example.com\",\n    \"password\": \"wrong-password\",\n    \"device_name\": \"Postman\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Invalid credentials\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Log out a user by revoking their authentication token."
+					},
+					"response": [
+						{
+							"name": "Successful Logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Logout successful\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"user"
+							]
+						},
+						"description": "Get the authenticated user's information."
+					},
+					"response": [
+						{
+							"name": "Successful User Information",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/user",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"User information retrieved\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john@example.com\",\n        \"created_at\": \"2025-04-22T12:00:00.000000Z\",\n        \"updated_at\": \"2025-04-22T12:00:00.000000Z\"\n    }\n}"
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/auth/user",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"user"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Endpoints for user registration, login, and authentication management"
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories?name=&featured=&sort_by=sort_order&sort_direction=asc&per_page=15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "",
+									"description": "Filter by category name"
+								},
+								{
+									"key": "featured",
+									"value": "",
+									"description": "Filter by featured status (true/false)"
+								},
+								{
+									"key": "sort_by",
+									"value": "sort_order",
+									"description": "Field to sort by (sort_order, name, created_at)"
+								},
+								{
+									"key": "sort_direction",
+									"value": "asc",
+									"description": "Sort direction (asc/desc)"
+								},
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page"
+								}
+							]
+						},
+						"description": "Get a paginated list of all categories with optional filtering."
+					},
+					"response": [
+						{
+							"name": "Successful Categories List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories?name=&featured=&sort_by=sort_order&sort_direction=asc&per_page=15",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": ""
+										},
+										{
+											"key": "featured",
+											"value": ""
+										},
+										{
+											"key": "sort_by",
+											"value": "sort_order"
+										},
+										{
+											"key": "sort_direction",
+											"value": "asc"
+										},
+										{
+											"key": "per_page",
+											"value": "15"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": 1,\n                \"name\": \"News & Storytelling\",\n                \"slug\": \"news-storytelling\",\n                \"description\": \"Podcasts about current events and storytelling\",\n                \"image_url\": \"https://example.com/images/news.jpg\",\n                \"is_featured\": true,\n                \"sort_order\": 1,\n                \"podcasts_count\": 7,\n                \"created_at\": \"2025-04-22T12:00:00.000000Z\",\n                \"updated_at\": \"2025-04-22T12:00:00.000000Z\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Entertainment & Lifestyle\",\n                \"slug\": \"entertainment-lifestyle\",\n                \"description\": \"Podcasts about entertainment and lifestyle topics\",\n                \"image_url\": \"https://example.com/images/entertainment.jpg\",\n                \"is_featured\": false,\n                \"sort_order\": 2,\n                \"podcasts_count\": 5,\n                \"created_at\": \"2025-04-22T12:00:00.000000Z\",\n                \"updated_at\": \"2025-04-22T12:00:00.000000Z\"\n            }\n        ],\n        \"links\": {\n            \"first\": \"http://localhost:8000/api/v1/categories?page=1\",\n            \"last\": \"http://localhost:8000/api/v1/categories?page=1\",\n            \"prev\": null,\n            \"next\": null\n        },\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 1,\n            \"links\": [\n                {\n                    \"url\": null,\n                    \"label\": \"&laquo; Previous\",\n                    \"active\": false\n                },\n                {\n                    \"url\": \"http://localhost:8000/api/v1/categories?page=1\",\n                    \"label\": \"1\",\n                    \"active\": true\n                },\n                {\n                    \"url\": null,\n                    \"label\": \"Next &raquo;\",\n                    \"active\": false\n                }\n            ],\n            \"path\": \"http://localhost:8000/api/v1/categories\",\n            \"per_page\": 15,\n            \"to\": 2,\n            \"total\": 2\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Featured Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories/featured?limit=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"featured"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5",
+									"description": "Number of categories to return"
+								}
+							]
+						},
+						"description": "Get a list of featured categories."
+					},
+					"response": [
+						{
+							"name": "Successful Featured Categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories/featured?limit=5",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories",
+										"featured"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"News & Storytelling\",\n            \"slug\": \"news-storytelling\",\n            \"description\": \"Podcasts about current events and storytelling\",\n            \"image_url\": \"https://example.com/images/news.jpg\",\n            \"is_featured\": true,\n            \"sort_order\": 1,\n            \"podcasts_count\": 7,\n            \"created_at\": \"2025-04-22T12:00:00.000000Z\",\n            \"updated_at\": \"2025-04-22T12:00:00.000000Z\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Health & Wellness\",\n            \"slug\": \"health-wellness\",\n            \"description\": \"Podcasts about health, wellness, and personal development\",\n            \"image_url\": \"https://example.com/images/health.jpg\",\n            \"is_featured\": true,\n            \"sort_order\": 5,\n            \"podcasts_count\": 4,\n            \"created_at\": \"2025-04-22T12:00:00.000000Z\",\n            \"updated_at\": \"2025-04-22T12:00:00.000000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Category By Slug",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories/science-technology",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"science-technology"
+							]
+						},
+						"description": "Get detailed information about a specific category by its slug."
+					},
+					"response": [
+						{
+							"name": "Successful Category Details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories/news-storytelling",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories",
+										"news-storytelling"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"News & Storytelling\",\n        \"slug\": \"news-storytelling\",\n        \"description\": \"Podcasts about current events and storytelling\",\n        \"image_url\": \"https://example.com/images/news.jpg\",\n        \"is_featured\": true,\n        \"sort_order\": 1,\n        \"podcasts_count\": 7,\n        \"created_at\": \"2025-04-22T12:00:00.000000Z\",\n        \"updated_at\": \"2025-04-22T12:00:00.000000Z\"\n    }\n}"
+						},
+						{
+							"name": "Category Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories/non-existent-category",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories",
+										"non-existent-category"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Category not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Podcasts By Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories/news-storytelling/podcasts?per_page=15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"news-storytelling",
+								"podcasts"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page"
+								}
+							]
+						},
+						"description": "Get a paginated list of podcasts in a specific category."
+					},
+					"response": [
+						{
+							"name": "Successful Podcasts by Category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories/news-storytelling/podcasts?per_page=15",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories",
+										"news-storytelling",
+										"podcasts"
+									],
+									"query": [
+										{
+											"key": "per_page",
+											"value": "15"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": 1,\n                \"title\": \"The Podcast Experience\",\n                \"slug\": \"the-podcast-experience\",\n                \"description\": \"A weekly discussion about current events\",\n                \"image_url\": \"https://example.com/images/podcast1.jpg\",\n                \"author_name\": \"John Doe\",\n                \"is_featured\": true,\n                \"category\": {\n                    \"id\": 1,\n                    \"name\": \"News & Storytelling\",\n                    \"slug\": \"news-storytelling\"\n                },\n                \"episodes_count\": 12,\n                \"created_at\": \"2025-04-22T12:00:00.000000Z\",\n                \"updated_at\": \"2025-04-22T12:00:00.000000Z\"\n            },\n            {\n                \"id\": 2,\n                \"title\": \"Daily News Roundup\",\n                \"slug\": \"daily-news-roundup\",\n                \"description\": \"Daily summaries of important news\",\n                \"image_url\": \"https://example.com/images/podcast2.jpg\",\n                \"author_name\": \"Jane Smith\",\n                \"is_featured\": false,\n                \"category\": {\n                    \"id\": 1,\n                    \"name\": \"News & Storytelling\",\n                    \"slug\": \"news-storytelling\"\n                },\n                \"episodes_count\": 45,\n                \"created_at\": \"2025-04-22T12:00:00.000000Z\",\n                \"updated_at\": \"2025-04-22T12:00:00.000000Z\"\n            }\n        ],\n        \"links\": {\n            \"first\": \"http://localhost:8000/api/v1/categories/news-storytelling/podcasts?page=1\",\n            \"last\": \"http://localhost:8000/api/v1/categories/news-storytelling/podcasts?page=1\",\n            \"prev\": null,\n            \"next\": null\n        },\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 1,\n            \"path\": \"http://localhost:8000/api/v1/categories/news-storytelling/podcasts\",\n            \"per_page\": 15,\n            \"to\": 2,\n            \"total\": 2\n        }\n    }\n}"
+						},
+						{
+							"name": "Category Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories/non-existent-category/podcasts",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories",
+										"non-existent-category",
+										"podcasts"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Category not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Science & Technology\",\n    \"slug\": \"science-technology\",\n    \"description\": \"Podcasts about science and technology\",\n    \"image_url\": \"https://example.com/images/science.jpg\",\n    \"is_featured\": true,\n    \"sort_order\": 3\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						},
+						"description": "Create a new category (requires authentication)."
+					},
+					"response": [
+						{
+							"name": "Successful Category Creation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Science & Technology\",\n    \"slug\": \"science-technology\",\n    \"description\": \"Podcasts about science and technology\",\n    \"image_url\": \"https://example.com/images/science.jpg\",\n    \"is_featured\": true,\n    \"sort_order\": 3\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Category created successfully\",\n    \"data\": {\n        \"id\": 7,\n        \"name\": \"Science & Technology\",\n        \"slug\": \"science-technology\",\n        \"description\": \"Podcasts about science and technology\",\n        \"image_url\": \"https://example.com/images/science.jpg\",\n        \"is_featured\": true,\n        \"sort_order\": 3,\n        \"created_at\": \"2025-04-22T12:30:00.000000Z\",\n        \"updated_at\": \"2025-04-22T12:30:00.000000Z\"\n    }\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"\",\n    \"slug\": \"science-technology\",\n    \"description\": \"Podcasts about science and technology\",\n    \"image_url\": \"\",\n    \"is_featured\": true,\n    \"sort_order\": 3\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Validation errors\",\n    \"errors\": {\n        \"name\": [\"The name field is required.\"],\n        \"image_url\": [\"The image url field is required.\"]\n    },\n    \"data\": null\n}"
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Science & Technology\",\n    \"slug\": \"science-technology\",\n    \"description\": \"Podcasts about science and technology\",\n    \"image_url\": \"https://example.com/images/science.jpg\",\n    \"is_featured\": true,\n    \"sort_order\": 3\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Category Name\",\n    \"slug\": \"updated-category-slug\",\n    \"description\": \"Updated description\",\n    \"image_url\": \"https://example.com/images/updated.jpg\",\n    \"is_featured\": false,\n    \"sort_order\": 10\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"1"
+							]
+						},
+						"description": "Update an existing category (requires authentication)."
+					},
+					"response": [
+						{
+							"name": "Successful Category Update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Updated Category Name\",\n    \"slug\": \"updated-category-slug\",\n    \"description\": \"Updated description\",\n    \"image_url\": \"https://example.com/images/updated.jpg\",\n    \"is_featured\": false,\n    \"sort_order\": 10\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Category updated successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Updated Category Name\",\n        \"slug\": \"updated-category-slug\",\n        \"description\": \"Updated description\",\n        \"image_url\": \"https://example.com/images/updated.jpg\",\n        \"is_featured\": false,\n        \"sort_order\": 10,\n        \"created_at\": \"2025-04-22T12:00:00.000000Z\",\n        \"updated_at\": \"2025-04-22T12:35:00.000000Z\"\n    }\n}"
+						},
+						{
+							"name": "Category Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Updated Category Name\",\n    \"slug\": \"updated-category-slug\",\n    \"description\": \"Updated description\",\n    \"image_url\": \"https://example.com/images/updated.jpg\",\n    \"is_featured\": false,\n    \"sort_order\": 10\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories/999",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories",
+										"999"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Category not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/categories/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"1"
+							]
+						},
+						"description": "Delete a category (requires authentication)."
+					},
+					"response": [
+						{
+							"name": "Successful Category Deletion",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Category deleted successfully\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Category Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories/999",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories",
+										"999"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Category not found\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			],
+			"description": "Endpoints for managing podcast categories"
+		},
+		{
+			"name": "Podcasts",
+			"item": [
+				{
+					"name": "List All Podcasts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/podcasts?title=&author=&featured=&sort_by=created_at&sort_direction=desc&per_page=15",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"podcasts"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "",
+									"description": "Filter podcasts by title"
+								},
+								{
+									"key": "author",
+									"value": "",
+									"description": "Filter podcasts by author"
+								},
+								{
+									"key": "featured",
+									"value": "",
+									"description": "Filter by featured status (true/false)"
+								},
+								{
+									"key": "sort_by",
+									"value": "created_at",
+									"description": "Field to sort by (created_at, title, author_name)"
+								},
+								{
+									"key": "sort_direction",
+									"value": "desc",
+									"description": "Sort direction (asc/desc)"
+								},
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page"
+								}
+							]
+						},
+						"description": "Get a paginated list of all podcasts with optional filtering and sorting."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Featured Podcasts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/podcasts/featured?limit=5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"podcasts",
+								"featured"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5",
+									"description": "Number of featured podcasts to return"
+								}
+							]
+						},
+						"description": "Get a list of featured podcasts for homepage display."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Podcast by Slug",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/podcasts/example-podcast-slug",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"podcasts",
+								"example-podcast-slug"
+							]
+						},
+						"description": "Get detailed information about a specific podcast."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Podcast Episodes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/podcasts/example-podcast-slug/episodes?per_page=15",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"podcasts",
+								"example-podcast-slug",
+								"episodes"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page"
+								}
+							]
+						},
+						"description": "Get a paginated list of episodes for a specific podcast."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Podcast",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Tech Talks Weekly\",\n    \"slug\": \"tech-talks-weekly\",\n    \"description\": \"A weekly podcast covering the latest in technology news and trends.\",\n    \"image_url\": \"https://example.com/images/tech-talks.jpg\",\n    \"author_name\": \"Jane Smith\",\n    \"category_id\": 1,\n    \"is_featured\": false,\n    \"tags\": [1, 3, 5]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/podcasts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"podcasts"
+							]
+						},
+						"description": "Create a new podcast (requires authentication)."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Podcast",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Tech Talks Weekly (Updated)\",\n    \"slug\": \"tech-talks-weekly\",\n    \"description\": \"An updated weekly podcast covering the latest in technology news and trends.\",\n    \"image_url\": \"https://example.com/images/tech-talks-updated.jpg\",\n    \"author_name\": \"Jane Smith\",\n    \"category_id\": 1,\n    \"is_featured\": true,\n    \"tags\": [1, 3, 7]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/podcasts/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"podcasts",
+								"1"
+							]
+						},
+						"description": "Update an existing podcast (requires authentication)."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Podcast",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/podcasts/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"podcasts",
+								"1"
+							]
+						},
+						"description": "Delete a podcast (requires authentication)."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints related to podcast management"
+		},
+		{
+			"name": "Episodes",
+			"item": [
+				{
+					"name": "List All Episodes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/episodes?title=&podcast_id=&featured=&from_date=&to_date=&sort_by=published_at&sort_direction=desc&per_page=15",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"episodes"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "",
+									"description": "Filter episodes by title"
+								},
+								{
+									"key": "podcast_id",
+									"value": "",
+									"description": "Filter episodes by podcast ID"
+								},
+								{
+									"key": "featured",
+									"value": "",
+									"description": "Filter by featured status (true/false)"
+								},
+								{
+									"key": "from_date",
+									"value": "",
+									"description": "Filter episodes published after this date (YYYY-MM-DD)"
+								},
+								{
+									"key": "to_date",
+									"value": "",
+									"description": "Filter episodes published before this date (YYYY-MM-DD)"
+								},
+								{
+									"key": "sort_by",
+									"value": "published_at",
+									"description": "Field to sort by (published_at, title, duration_in_seconds)"
+								},
+								{
+									"key": "sort_direction",
+									"value": "desc",
+									"description": "Sort direction (asc/desc)"
+								},
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page"
+								}
+							]
+						},
+						"description": "Get a paginated list of all episodes with optional filtering and sorting."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Featured Episodes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/episodes/featured?limit=5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"episodes",
+								"featured"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5",
+									"description": "Number of featured episodes to return"
+								}
+							]
+						},
+						"description": "Get a list of featured episodes for homepage display."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recent Episodes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/episodes/recent?limit=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"episodes",
+								"recent"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Number of recent episodes to return"
+								}
+							]
+						},
+						"description": "Get a list of recently published episodes."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Episode by Slug",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/episodes/example-episode-slug",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"episodes",
+								"example-episode-slug"
+							]
+						},
+						"description": "Get detailed information about a specific episode."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Episode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"podcast_id\": 1,\n    \"title\": \"The Future of AI Development\",\n    \"slug\": \"the-future-of-ai-development\",\n    \"description\": \"In this episode, we discuss the future of AI development and its impact on society.\",\n    \"audio_url\": \"https://example.com/episodes/future-ai.mp3\",\n    \"duration_in_seconds\": 3600,\n    \"transcript\": \"Complete transcript of the episode...\",\n    \"is_featured\": false,\n    \"published_at\": \"2025-04-20T12:00:00Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/episodes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"episodes"
+							]
+						},
+						"description": "Create a new episode for a podcast (requires authentication)."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Episode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"podcast_id\": 1,\n    \"title\": \"The Future of AI Development (Updated)\",\n    \"slug\": \"the-future-of-ai-development\",\n    \"description\": \"Updated episode where we discuss the future of AI development and its impact on society.\",\n    \"audio_url\": \"https://example.com/episodes/future-ai-updated.mp3\",\n    \"duration_in_seconds\": 3720,\n    \"transcript\": \"Updated transcript of the episode...\",\n    \"is_featured\": true,\n    \"published_at\": \"2025-04-20T12:00:00Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/episodes/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"episodes",
+								"1"
+							]
+						},
+						"description": "Update an existing episode (requires authentication)."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Episode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/episodes/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"episodes",
+								"1"
+							]
+						},
+						"description": "Delete an episode (requires authentication)."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints related to episode management"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "YOUR_API_TOKEN_HERE",
+			"type": "string"
+		}
+	]
+}
